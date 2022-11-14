@@ -39,13 +39,15 @@ def cantidades():
 
 def cambio_monedas(dinero_ingresado,valor_cafe):
     """Evaluo el dinero ingresado y le retorno al cliente"""
-    cambios = 0
     if(dinero_ingresado > valor_cafe):
-        cambios  = dinero_ingresado - valor_cafe
-        return (f"Su cambio: ${cambios}")
-    elif(dinero_ingresado < valor_cafe):
-        return (f"Lo lamento no cuenta con dinero suficiente :(")
-    return (f"Cambio: ${cambios}")
+        return True
+    return False
+    
+
+def imprimir_cambio(dinero_ingresado,valor_cafe):
+    cambios = 0 
+    cambios  = dinero_ingresado - valor_cafe
+    return (f"Cambio: ${cambios:.2f}")
 
 
 
@@ -92,16 +94,19 @@ def pedir_cafe():
             if(recursos_suficientes(menu['ingredients'])):
                 print("Por favor ingrese el dinero.")
                 ingresar_dinero()
-                restaDeIngredientes(menu['ingredients'])
-                print(cambio_monedas(cambio,menu['cost']))
+                if (cambio_monedas(cambio,menu['cost'])):
+                    print('Dinero suficiente!')
+                    print(f"aquiesta su cambio! {imprimir_cambio(cambio,menu['cost'])}")
+                    restaDeIngredientes(menu['ingredients'])
+                    print(f"Aqui esta su {seleccion} ☕.")
+                else: 
+                    print(f"Lo lamento no cuenta con dinero suficiente :(")
             else:
                 apagar_maquina = True           
         elif(seleccion == "reporte"):
             print(cantidades())
         else:
-            apagar_maquina = True
             print(f"Opcion invalida.")
         if(apagar_maquina == False):
-            print(f"Aqui esta su {seleccion} ☕.")
-            seleccion = input("Que tipo de cafe desea? (espresso/latte/capuccino): ")
+            seleccion = input("Que tipo de cafe desea? (espresso/latte/cappuccino): ")
             cambio = 0

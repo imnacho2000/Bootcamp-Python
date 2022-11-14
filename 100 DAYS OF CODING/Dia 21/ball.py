@@ -11,8 +11,8 @@ class Ball(Turtle):
         self.screen = Screen()
         self.shapesize(stretch_wid=2)
         self.goto(0,0)
-        self.x_move = 0
-        self.y_move = 0
+        self.x_move = 10
+        self.y_move = 10
     
     def mover(self):
         self.goto(x=self.xcor() + self.x_move,y=self.ycor() + self.y_move)

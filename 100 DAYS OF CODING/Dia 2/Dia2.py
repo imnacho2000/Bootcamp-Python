@@ -4,4 +4,4 @@ propina = float(input("Ingrese propina: "))
 if (propina == 0):
     print("Monto a pagar: $" + str((montoP / personasADiv)))
 else:
-    print("Monto a pagar: $" + str(((montoP / personasADiv) + ((propina/100) * montoP / personasADiv))))
+    print("Monto a pagar: $" + str(propina + montoP / personasADiv))

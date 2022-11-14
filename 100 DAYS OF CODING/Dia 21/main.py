@@ -36,7 +36,7 @@ game_is_on = True
 while game_is_on:
     time.sleep(ball.gol)
     screen.update()
-    ball.mover()
+    ball.mover() 
     if((ball.ycor() > 370)  | (ball.ycor() < -370)):
         ball.reboteY()
     if (((ball.distance(jugador_dos) < 50) and (ball.xcor() > 540)) | ((ball.distance(jugador_uno) < 50) and (ball.xcor() < -540))):
