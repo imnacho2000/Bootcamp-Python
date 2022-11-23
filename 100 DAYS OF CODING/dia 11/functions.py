@@ -85,12 +85,12 @@ def cartas():
             user_cards.append(deal_card())
         while(game_over != True):
             print(f"Primera carta de la computadora: {cpu_cards[0]}")
-            print(f"Tus cartas: {user_cards}, valor parcial: {sum(user_cards)}") 
             total_user = calculador(user_cards)
             total_cpu = calculador(cpu_cards)
             if ((total_user == 0) | (total_cpu == 0) | (total_user > 21)):
                 game_over = True
             else:
+                print(f"Tus cartas: {user_cards}, valor parcial: {sum(user_cards)}") 
                 si = input("Presione 'Y' para obtener otra carta o 'N' para dejar: ")
                 if(si == "Y"):
                     user_cards.append(deal_card())
