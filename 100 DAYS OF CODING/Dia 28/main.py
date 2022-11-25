@@ -78,6 +78,7 @@ canvas = Canvas(width=200,height=223, bg=YELLOW, highlightthickness=0)
 tomate_img = PhotoImage(file="tomato.png")
 canvas.create_image(103, 112, image=tomate_img)
 canvas.grid(column=3,row=1)
+window.iconphoto(False,tomate_img)
 
 label_timer = Label(text="Temporizador",font=(FONT_NAME,30,"bold"), fg=GREEN, background=YELLOW)
 label_timer.grid(column=3,row=0)

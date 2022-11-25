@@ -51,6 +51,7 @@ image_logo = PhotoImage(file="logo.png")
 canvas = Canvas(width=200,height=200, highlightthickness=0, bg="white")
 canvas.create_image(100,100, image=image_logo)
 canvas.grid(column=1,row=0)
+window.iconphoto(False,image_logo)
  
  # Fuente # 
 font = ("Arial",8,"bold")
