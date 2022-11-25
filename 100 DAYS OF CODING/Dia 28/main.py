@@ -76,12 +76,12 @@ window.config(padx=100,pady=100, bg=YELLOW)
 
 canvas = Canvas(width=200,height=223, bg=YELLOW, highlightthickness=0)
 tomate_img = PhotoImage(file="tomato.png")
+canvas.create_image(103, 112, image=tomate_img)
+canvas.grid(column=3,row=1)
 
 label_timer = Label(text="Temporizador",font=(FONT_NAME,30,"bold"), fg=GREEN, background=YELLOW)
 label_timer.grid(column=3,row=0)
-canvas.create_image(103, 112, image=tomate_img)
 timer_text = canvas.create_text(103, 134, text="00:00", font=(FONT_NAME, 35, "bold"),fill="white")
-canvas.grid(column=3,row=1)
 
 def set_timer_break():
     label_timer["text"] = "Descanso"
