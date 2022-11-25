@@ -1,0 +1,1 @@
+canvas.itemconfig(timer_text, text=f"{minutos}:00")
