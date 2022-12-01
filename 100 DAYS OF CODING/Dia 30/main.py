@@ -132,7 +132,7 @@ label_button_generate.grid(column=2,row=3,columnspan=2)
 
 # ---------------------------- ADD ------------------------------- # 
 
-label_button_generate = Button(text="Add", font=font, width=36,fg="white",bg="black", command=crear_contrasena)
+label_button_generate = Button(text="Guardar", font=font, width=36,fg="white",bg="black", command=crear_contrasena)
 label_button_generate.grid(column=1,row=4)
 
    
