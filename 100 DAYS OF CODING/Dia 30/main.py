@@ -2,6 +2,10 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import json
+
+
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 def generar_contraseña():
@@ -38,23 +42,47 @@ def crear_contrasena():
     else:
         try:
             f = open(f"C:\\Users\\ignacio.carrera\\Desktop\\contraseñas.json","r")
-            #leo datao vieja
-        except Exception:
-             print('No se pudo abrir el archivo')
-        else:
-            jason = json.load(f)
-            #Actualizo la vieja con la nueva
-            jason.update(dictionary_data)
-            #Abro en  modo de escritura y actualizo con js.dump
+        except FileNotFoundError:
+            print('No se encontro el archivo, creandolo y cargando informacion')
             f = open(f"C:\\Users\\ignacio.carrera\\Desktop\\contraseñas.json","w")
-            print('No se pudo abrir el archivo en modo W')
+            json.dump(dictionary_data,f, indent=4)
+        else:
+            # leo datao vieja
+            jason = json.load(f)
+            # Actualizo la vieja con la nueva
+            jason.update(dictionary_data)
+            #Lo cargo
+            f = open(f"C:\\Users\\ignacio.carrera\\Desktop\\contraseñas.json","w")
             json.dump(jason,f, indent=4)
-            print(jason)
-            # f.close()
+        finally:
             label_text_webist_entry.delete(0,END)
             label_text_password_entry.delete(0,END)
             messagebox.showinfo(title="Exito",message="¡Informacion guardada con exito!")
+
+
+# ---------------------------- SEARCH ------------------------------- #
+def buscar_contraseña():
+    web = label_text_webist_entry.get()
+    if web == "":
+        messagebox.showerror(title="Informacion", message="¡Asegurese que los campos esten completos!")
+    else:
+        contraseña = ""
+        username = ""
+        try:
+            f = open(f"C:\\Users\\ignacio.carrera\\Desktop\\contraseñas.json","r")
+        except FileNotFoundError:
+            messagebox.showerror(title="Informacion", message="¡Archivo no encontrado!")
+        else:
+            jason = json.load(f)
+            if web in jason: 
+                contraseña = jason[web]['password']
+                username = jason[web]['mail']
+                messagebox.showinfo(title="Informacion",message=f"Website: {web} \nEmail/Username: {username} \nContraseña: {contraseña}")
+            else:
+                messagebox.showerror(title="Informacion", message="¡Web no encontrada!") 
 # ---------------------------- UI SETUP ------------------------------- # 
+
+
 window = Tk()
 window.config(padx=20, pady=20, bg = "white")
 window.title("Password Manager")
@@ -73,7 +101,7 @@ font = ("Arial",8,"bold")
 label_text_webiste = Label(text="Website:", font=font, bg="white")
 label_text_webiste.grid(column=0,row=1)
 
-label_boton_buscar = Button(text="Buscar",fg="white",bg="black", command=generar_contraseña)
+label_boton_buscar = Button(text="Buscar",fg="white",bg="black", command=buscar_contraseña)
 label_boton_buscar.grid(column=2,row=1)
 
 label_text_webist_entry = Entry(width=36)
